@@ -9,3 +9,4 @@ services:
       COMPOSER_MEMORY_LIMIT: -1
     volumes:
       - ./:/code:rw
+    entrypoint: sh /code/.docker/entrypoint.sh
