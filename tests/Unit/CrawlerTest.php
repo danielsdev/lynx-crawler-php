@@ -18,4 +18,12 @@ final class CrawlerTest extends TestCase
         $invalidUrl = 'teste/123';
         new Crawler($invalidUrl, HttpClient::create());
     }
+
+    public function testInstantiateACrawlerWithValidUrlMustSuccess(): void
+    {
+        $client = HttpClient::create();
+        $crawler = new Crawler('https://www.google.com/', $client);
+
+        $this->assertInstanceOf(Crawler::class, $crawler);
+    }
 }
