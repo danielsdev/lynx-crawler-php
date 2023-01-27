@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  lynx-crawler-php:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+    volumes:
+      - ./:/code:rw

@@ -11,5 +11,11 @@
             "email": "danielrlima2015@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/dom-crawler": "^6.2",
+        "symfony/http-client": "^6.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
+    }
 }
