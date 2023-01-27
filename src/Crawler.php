@@ -18,22 +18,31 @@ final class Crawler
         }
     }
 
+    private function submitForm(array $formData, string $cookie): string
+    {
+        $response = $this->client->request('POST', $this->url, [
+            'headers' => [
+                'Referer' => $this->url,
+                'Cookie' => $cookie,
+            ],
+            'body' => $formData,
+        ]);
+
+        return $response->getContent();
+    }
+
     public function seekAnswer(): string
     {
         $response = $this->client->request('GET', $this->url);
         $pageHandler = new PageHandler($response->getContent());
 
-        $response = $this->client->request('POST', $this->url, [
-            'headers' => [
-                'Referer' => $this->url,
-                'Cookie' => $response->getHeaders()['set-cookie'][0],
-            ],
-            'body' => [
+        $answerPageContent = $this->submitForm(
+            [
                 'token' => $pageHandler->getParsedToken(),
             ],
-        ]);
-
-        $pageHandler->setContent($response->getContent());
+            $response->getHeaders()['set-cookie'][0] ?? ''
+        );
+        $pageHandler->setContent($answerPageContent);
 
         return $pageHandler->getAnswer();
     }
