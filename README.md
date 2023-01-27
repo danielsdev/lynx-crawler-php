@@ -12,11 +12,11 @@ A restrição é não poder usar emuladores de browser (como puppeteer, selenium
 Basta executar os seguintes comandos:
 
 ```bash
-docker-compose run --rm lynx-crawler-php bash
+docker-compose run --rm lynx-crawler-php
 
 php bin/get-answer.php
 ```
-- O primeiro comando irá fazer o build do container e te dar acesso a um shell interativo.
+- O primeiro comando irá fazer o build do container, executar o `composer install` e te dar acesso a um shell interativo.
 - O segundo comando irá executar um script PHP que irá buscar a resposta.
 
 Após executar isso, você terá uma saída semelhante a essa:
